@@ -1,0 +1,30 @@
+{
+    "Army_1":{
+        "squad": 2,
+        "soldier": 6,
+        "vehicle": 4,
+        "name": "Army_1"
+    },
+
+    "Army_2": {
+        "squad": 3,
+        "soldier": 3,
+        "vehicle": 4,
+        "name": "Army_2"
+    },
+
+    "Army_3": {
+        "squad": 4,
+        "soldier": 3,
+        "vehicle": 2,
+        "name": "Army_3"
+    },
+    
+    "Army_4": {
+        "squad": 2,
+        "soldier": 5,
+        "vehicle": 5,
+        "name": "Army_4"
+    }
+}
+

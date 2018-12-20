@@ -1,6 +1,15 @@
-from random import randint
-from random import choices
+import json
 from models.army import Army
+
+
+def read_json():
+    with open('config_armies.json', 'r') as file:
+        json_obj = json.load(file)
+    parameters = list(json_obj.values())
+    all_armies = []
+    for parameter in parameters:
+        all_armies.append(Army(**parameter))
+    return all_armies
 
 
 def battle():
@@ -31,10 +40,5 @@ def battle():
 
 
 if __name__ == '__main__':
-    all_armies = [
-        Army(squad=2, soldier=2, vehicle=2, name='ARMY_1'),
-        Army(squad=3, soldier=6, vehicle=4, name='ARMY_2'),
-        Army(squad=3, soldier=6, vehicle=4, name='ARMY_3'),
-        Army(squad=3, soldier=6, vehicle=4, name='ARMY_4'),
-        ]
+    all_armies = read_json()
     battle()
