@@ -1,13 +1,25 @@
-from random import randint
 from .units.soldier import Soldier
 from .units.vehicle import Vehicle
 
 
 class Squad:
-    def __init__(self, num_soldiers, num_vehicle):
-        self.soldiers = [Soldier() for i in range(num_soldiers)]
-        self.vehicles = [Vehicle(randint(2, 3)) for i in range(num_vehicle)]
-        self.members = self.soldiers + self.vehicles
+    def __init__(self, units):
+        self.members = []
+        for Unit, numbers in units.items():
+            if isinstance(numbers, dict):
+                dictionary = numbers
+                if not "numbers" in dictionary:
+                    raise AttributeError("Did not define a numbers in configuration file")
+                num_units = dictionary["numbers"]
+                dictionary.pop("numbers")
+
+                for i in range(num_units):
+                    self.members.append(eval(Unit)(**dictionary))
+
+                dictionary['numbers'] = num_units
+            else:
+                for i in range(numbers):
+                    self.members.append(eval(Unit)())
 
     def attack(self):
         total_number = len(self.members)

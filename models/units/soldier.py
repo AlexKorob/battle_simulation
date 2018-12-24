@@ -5,7 +5,8 @@ from .unit import Unit
 
 class Soldier(Unit):
     def __init__(self):
-        super().__init__()
+        self.recharge = randint(100, 1000)
+        self.health = 1
         self.experience = 0
         self.saved_time = 0
 
@@ -18,12 +19,12 @@ class Soldier(Unit):
         return calc
 
     def damage(self):
-        if self.is_recharged(): # if soldier recharged return damage
+        if self.is_recharged():     # if soldier recharged return damage
             dmg = 0.05 + self.experience / 100
             self.up()
             self.saved_time = time()
             return round(dmg, 2)
-        return 0 # else return damage == 0
+        return 0    # else return damage == 0
 
     def get_damage(self, dmg):
         self.health -= dmg

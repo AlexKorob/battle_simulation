@@ -1,12 +1,10 @@
-from random import randint, choices
+from random import choices
 from .squad import Squad
 
 
 class Army:
-    def __init__(self, squad=1, soldier=5, vehicle=3, name=None):
-        soldier = 5 if 2 >= soldier >= 7 else soldier
-        vehicle = 3 if 1 >= vehicle >= 6 else vehicle
-        self.squads = [Squad(soldier, vehicle) for i in range(squad)]
+    def __init__(self, name=None, squad=1, units=None):
+        self.squads = [Squad(units) for i in range(squad)]
         self.name = name
 
     def all_enemy_squads(self, list_with_armies):
@@ -73,5 +71,3 @@ class Army:
 
     def __str__(self):
         return self.name
-
-a = Army()

@@ -6,9 +6,7 @@ from .soldier import Soldier
 
 class Vehicle(Unit):
     def __init__(self, operators):
-        super().__init__()
-        self.health_coeff = 3   # указывает коефиц. здоровья
-        self.health *= 3
+        self.health = 3
         self.recharge = randint(1000, 2000)
         self.operators = operators if 0 < operators <= 3 else 1
         self.operators = [Soldier() for i in range(operators)]
@@ -27,7 +25,7 @@ class Vehicle(Unit):
     def total_health(self):
         '''return health in % '''
         tot_health = sum([oper.health for oper in self.operators]) + self.health
-        return int((tot_health / (len(self.operators) + self.health_coeff)) * 100)
+        return int((tot_health / (len(self.operators) + self.health)) * 100)
 
     def up_level(self):
         for oper in self.operators:
