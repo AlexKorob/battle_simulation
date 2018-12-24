@@ -1,30 +1,45 @@
 {
-    "Army_1":{
+    "Army_1": {
+        "name": "Army_1",
         "squad": 2,
-        "soldier": 6,
-        "vehicle": 4,
-        "name": "Army_1"
+        "units": {
+            "Soldier": 6,
+            "Vehicle": {
+              "operators": 3,
+              "numbers": 4 }
+      }
     },
 
     "Army_2": {
+        "name": "Army_2",
         "squad": 3,
-        "soldier": 3,
-        "vehicle": 4,
-        "name": "Army_2"
+        "units": {
+            "Soldier": 6,
+            "Vehicle": {
+              "operators": 2,
+              "numbers": 4 }
+      }
     },
 
     "Army_3": {
+        "name": "Army_3",
         "squad": 4,
-        "soldier": 3,
-        "vehicle": 2,
-        "name": "Army_3"
+        "units": {
+            "Soldier": 6,
+            "Vehicle": {
+              "operators": 3,
+              "numbers": 2 }
+      }
     },
-    
+
     "Army_4": {
+        "name": "Army_4",
         "squad": 2,
-        "soldier": 5,
-        "vehicle": 5,
-        "name": "Army_4"
+        "units": {
+            "Soldier": 6,
+            "Vehicle": {
+              "operators": 2,
+              "numbers": 5 }
+      }
     }
 }
-
