@@ -3,12 +3,25 @@ from time import time
 from .unit import Unit
 
 
+@Unit.register('Soldier')
 class Soldier(Unit):
     def __init__(self):
-        self.recharge = randint(100, 1000)
-        self.health = 1
+        self._recharge = randint(100, 1000)
+        self._health = 1
         self.experience = 0
         self.saved_time = 0
+
+    @property
+    def health(self):
+        return self._health
+
+    @health.setter
+    def health(self, value):
+        self._health = max(0, value)
+
+    @property
+    def recharge(self):
+        return self._recharge
 
     def up(self):
         self.experience += 1
@@ -36,7 +49,7 @@ class Soldier(Unit):
         return False
 
     def alive(self):
-        if self.health <= 0:
+        if self.health == 0:
             return False
         return True
 

@@ -1,25 +1,22 @@
 from .units.soldier import Soldier
 from .units.vehicle import Vehicle
-
+from .units.unit import Unit
 
 class Squad:
     def __init__(self, units):
         self.members = []
-        for Unit, numbers in units.items():
-            if isinstance(numbers, dict):
-                dictionary = numbers
-                if not "numbers" in dictionary:
-                    raise AttributeError("Did not define a numbers in configuration file")
-                num_units = dictionary["numbers"]
-                dictionary.pop("numbers")
+        for unit, numbers in units.items():
+            dictionary = numbers
+            if not "numbers" in dictionary:
+                raise AttributeError("Did not define a numbers in configuration file")
+            num_units = dictionary["numbers"]
+            dictionary.pop("numbers")
 
-                for i in range(num_units):
-                    self.members.append(eval(Unit)(**dictionary))
+            for i in range(num_units):
+                self.members.append(Unit.new(unit, **dictionary))
 
-                dictionary['numbers'] = num_units
-            else:
-                for i in range(numbers):
-                    self.members.append(eval(Unit)())
+            dictionary['numbers'] = num_units
+
 
     def attack(self):
         total_number = len(self.members)

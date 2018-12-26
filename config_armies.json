@@ -3,7 +3,8 @@
         "name": "Army_1",
         "squad": 2,
         "units": {
-            "Soldier": 6,
+            "Soldier": {
+              "numbers": 3 },
             "Vehicle": {
               "operators": 3,
               "numbers": 4 }
@@ -14,7 +15,8 @@
         "name": "Army_2",
         "squad": 3,
         "units": {
-            "Soldier": 6,
+            "Soldier": {
+              "numbers": 6 },
             "Vehicle": {
               "operators": 2,
               "numbers": 4 }
@@ -25,7 +27,8 @@
         "name": "Army_3",
         "squad": 4,
         "units": {
-            "Soldier": 6,
+            "Soldier": {
+              "numbers": 3 },
             "Vehicle": {
               "operators": 3,
               "numbers": 2 }
@@ -36,7 +39,8 @@
         "name": "Army_4",
         "squad": 2,
         "units": {
-            "Soldier": 6,
+            "Soldier": {
+              "numbers": 4 },
             "Vehicle": {
               "operators": 2,
               "numbers": 5 }

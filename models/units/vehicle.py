@@ -4,13 +4,26 @@ from .unit import Unit
 from .soldier import Soldier
 
 
+@Unit.register('Vehicle')
 class Vehicle(Unit):
     def __init__(self, operators):
-        self.health = 3
-        self.recharge = randint(1000, 2000)
+        self._health = 3
+        self._recharge = randint(1000, 2000)
         self.operators = operators if 0 < operators <= 3 else 1
         self.operators = [Soldier() for i in range(operators)]
         self.saved_time = 0
+
+    @property
+    def health(self):
+        return self._health
+
+    @health.setter
+    def health(self, value):
+        self._health = max(0, value)
+
+    @property
+    def recharge(self):
+        return self._recharge
 
     def attack(self):
         attacks = [oper.attack() for oper in self.operators]
