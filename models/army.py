@@ -1,4 +1,4 @@
-from random import choices
+from random import choice
 from .squad import Squad
 
 
@@ -7,7 +7,7 @@ class Army:
         self.squads = [Squad(units) for i in range(squad)]
         self.name = name
 
-    def all_enemy_squads(self, list_with_armies):
+    def choose_targets(self, list_with_armies):
         target_squads = []
         for army in list_with_armies:
             if army != self:
@@ -16,14 +16,17 @@ class Army:
                         target_squads.append(squad)
         return target_squads
 
-    def update(self, all_armies):
+    def update(self):
         accum = []
         for squad in self.squads:
             if squad.alive():
                 accum.append(squad)
         self.squads = accum
+
+    def alive(self):
         if self.squads == []:
-            all_armies.remove(self)
+            return False
+        return True
 
     @staticmethod
     def weakest_squad(enemy_squads):
@@ -46,13 +49,13 @@ class Army:
         return power
 
     def choose_target(self, all_armies):
-        enemy_squads = self.all_enemy_squads(all_armies)
+        enemy_squads = self.choose_targets(all_armies)
         if enemy_squads == []:
             return None
-        choose_list = choices(['random', 'weakest', 'stronger'])[0]
+        choose_list = choice(['random', 'weakest', 'stronger'])
 
         if choose_list == 'random':
-            return choices(enemy_squads)[0]
+            return choice(enemy_squads)
         elif choose_list == 'weakest':
             return self.weakest_squad(enemy_squads)
         elif choose_list == 'stronger':
@@ -60,14 +63,12 @@ class Army:
 
     def attack(self, all_armies):
         '''Army choose random one own squad
-            and one enemy squad from method 'all_enemy_squads'''
-        self.update(all_armies)
-        if (self in all_armies):
-            squad = choices(self.squads)[0]
-            target = self.choose_target(all_armies)
-            if squad.attack() > target.attack():
-                damage = squad.damage()
-                target.get_damage(damage)
+            and one enemy squad from method 'choose_targets'''
+        squad = choice(self.squads)
+        target = self.choose_target(all_armies)
+        if squad.attack() > target.attack():
+            damage = squad.damage()
+            target.get_damage(damage)
 
     def __str__(self):
         return self.name

@@ -20,23 +20,26 @@ def battle():
 
     while len(all_armies) != 1:
         for army in all_armies:
-            army.attack(all_armies)
+            army.update()
+            if army.alive():
+                army.attack(all_armies)
+            else:
+                all_armies.remove(army)
 
     winner = all_armies[0]
     print('Winner: ', winner)
 
     # uncommet below for details
-    '''
-    print()
-    print('Status', str(winner) + ':')
-    print('Squads:', len(winner.squads))
-    for i, squad in enumerate(winner.squads):
-        print(i+1, "SQUAD")
-        print()
-        print('Number of members', len(squad.members))
-        for member in squad.members:
-            print(member)
-    '''
+
+    # print()
+    # print('Status', str(winner) + ':')
+    # print('Squads:', len(winner.squads))
+    # for i, squad in enumerate(winner.squads):
+    #     print(i+1, "SQUAD")
+    #     print()
+    #     print('Number of members', len(squad.members))
+    #     for member in squad.members:
+    #         print(member)
 
 
 if __name__ == '__main__':

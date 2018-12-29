@@ -23,7 +23,7 @@ class Soldier(Unit):
     def recharge(self):
         return self._recharge
 
-    def up(self):
+    def up_level(self):
         self.experience += 1
 
     def attack(self):
@@ -34,7 +34,7 @@ class Soldier(Unit):
     def damage(self):
         if self.is_recharged():     # if soldier recharged return damage
             dmg = 0.05 + self.experience / 100
-            self.up()
+            self.up_level()
             self.saved_time = time()
             return round(dmg, 2)
         return 0    # else return damage == 0

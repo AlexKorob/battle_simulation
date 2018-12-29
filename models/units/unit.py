@@ -12,7 +12,8 @@ class Unit(ABC):
     def health(self):
         pass
 
-    def register(self, cls, name):
+    @abstractmethod
+    def up_level(self):
         pass
 
     @abstractmethod

@@ -16,7 +16,7 @@
         "squad": 3,
         "units": {
             "Soldier": {
-              "numbers": 6 },
+              "numbers": 5 },
             "Vehicle": {
               "operators": 2,
               "numbers": 4 }
@@ -40,9 +40,9 @@
         "squad": 2,
         "units": {
             "Soldier": {
-              "numbers": 4 },
+              "numbers": 5 },
             "Vehicle": {
-              "operators": 2,
+              "operators": 3,
               "numbers": 5 }
       }
     }

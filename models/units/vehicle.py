@@ -33,7 +33,7 @@ class Vehicle(Unit):
         gavg = gavg**(1/len(attacks))
 
         calc = 0.5 * (1 + self.health / 100) * gavg
-        return round(calc, 2)
+        return calc
 
     def total_health(self):
         '''return health in % '''
@@ -42,7 +42,7 @@ class Vehicle(Unit):
 
     def up_level(self):
         for oper in self.operators:
-            oper.up()
+            oper.up_level()
 
     def damage(self):
         if self.is_recharged():
@@ -74,18 +74,14 @@ class Vehicle(Unit):
         self.operators = accum
 
     def get_damage(self, dmg):
-        tot_dmg = 10
-        self.health -= round(dmg*0.6, 2)
+        self.health -= dmg*0.6
         rand_oper = choices(self.operators)[0]
-        rand_oper.health -= round(dmg*0.1, 2)
-        tot_dmg -= 7
+        rand_oper.health -= dmg*0.1
+        tot_dmg = 3
         while tot_dmg > 0:
             for oper in self.operators:
                 oper.health -= dmg*0.1
-                oper.health = round(oper.health, 2)
                 tot_dmg -= 1
-                if tot_dmg <= 0:
-                    break
         self.update()
 
     def __str__(self):

@@ -2,21 +2,24 @@ from .units.soldier import Soldier
 from .units.vehicle import Vehicle
 from .units.unit import Unit
 
+
 class Squad:
     def __init__(self, units):
         self.members = []
-        for unit, numbers in units.items():
-            dictionary = numbers
-            if not "numbers" in dictionary:
+        total_units = 0
+        for unit, parameters in units.items():
+            if "numbers" not in parameters:
                 raise AttributeError("Did not define a numbers in configuration file")
-            num_units = dictionary["numbers"]
-            dictionary.pop("numbers")
+            num_units = parameters["numbers"]
+            total_units += num_units
+            if total_units > 10:
+                raise AssertionError("Units in Squad > 10")
+            parameters.pop("numbers")
 
             for i in range(num_units):
-                self.members.append(Unit.new(unit, **dictionary))
+                self.members.append(Unit.new(unit, **parameters))
 
-            dictionary['numbers'] = num_units
-
+            parameters['numbers'] = num_units
 
     def attack(self):
         total_number = len(self.members)
