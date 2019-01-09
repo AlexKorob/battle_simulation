@@ -21,7 +21,7 @@ def battle():
     while len(all_armies) != 1:
         for army in all_armies:
             army.update()
-            if army.alive():
+            if army.alive:
                 army.attack(all_armies)
             else:
                 all_armies.remove(army)

@@ -1,5 +1,5 @@
-from .units.soldier import Soldier
-from .units.vehicle import Vehicle
+from .units.soldier import Soldier  # noqa
+from .units.vehicle import Vehicle  # noqa
 from .units.unit import Unit
 
 
@@ -33,9 +33,8 @@ class Squad:
     def update(self):
         accum = []
         for member in self.members:
-            if member.alive() is False:
-                continue
-            accum.append(member)
+            if member.alive:
+                accum.append(member)
 
         self.members = accum
 
@@ -44,7 +43,7 @@ class Squad:
         for member in self.members:
             total += member.damage()
 
-        return round(total, 2)
+        return total
 
     def get_damage(self, dmg):
         dmg = dmg/len(self.members)
@@ -52,12 +51,14 @@ class Squad:
             member.get_damage(dmg)
         self.update()
 
+    @property
     def health(self):
         health = 0
         for mem in self.members:
             health += mem.health
         return health
 
+    @property
     def alive(self):
         if self.members:
             return True

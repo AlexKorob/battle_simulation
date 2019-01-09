@@ -12,17 +12,18 @@ class Army:
         for army in list_with_armies:
             if army != self:
                 for squad in army.squads:
-                    if squad.alive():
+                    if squad.alive:
                         target_squads.append(squad)
         return target_squads
 
     def update(self):
         accum = []
         for squad in self.squads:
-            if squad.alive():
+            if squad.alive:
                 accum.append(squad)
         self.squads = accum
 
+    @property
     def alive(self):
         if self.squads == []:
             return False
@@ -33,7 +34,7 @@ class Army:
         ''' squad with minimum health the most weakest '''
         weak = enemy_squads[0]
         for squad in enemy_squads:
-            if squad.health() < weak.health():
+            if squad.health < weak.health:
                 weak = squad
 
         return weak

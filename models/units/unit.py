@@ -6,10 +6,25 @@ class Unit(ABC):
 
     @abstractproperty
     def recharge(self):
+        """
+            Required time in milliseconds
+            for recharge
+        """
+        pass
+
+    @abstractproperty
+    def recharged(self):
+        """
+            Return True/False
+        """
         pass
 
     @abstractproperty
     def health(self):
+        pass
+
+    @abstractproperty
+    def alive(self):
         pass
 
     @abstractmethod
@@ -26,10 +41,6 @@ class Unit(ABC):
 
     @abstractmethod
     def get_damage(self):
-        pass
-
-    @abstractmethod
-    def alive(self):
         pass
 
     @classmethod
