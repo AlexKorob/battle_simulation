@@ -9,8 +9,8 @@ class Vehicle(Unit):
     def __init__(self, operators):
         self._health = 3
         self._recharge = randint(1000, 2000)
-        self.operators = operators if 0 < operators <= 3 else 1
-        self.operators = [Soldier() for i in range(operators)]
+        self.count_operators = operators if 0 < operators <= 3 else 1
+        self.operators = [Soldier() for i in range(self.count_operators)]
         self.saved_time = 0
 
     @property
