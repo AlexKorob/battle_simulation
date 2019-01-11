@@ -2,7 +2,7 @@ from abc import abstractmethod, abstractproperty, ABC
 
 
 class Unit(ABC):
-    UNIT = {}
+    UNITS = {}
 
     @abstractproperty
     def recharge(self):
@@ -46,10 +46,10 @@ class Unit(ABC):
     @classmethod
     def register(cls, name):
         def dec(unit_cls):
-            cls.UNIT[name] = unit_cls
+            cls.UNITS[name] = unit_cls
             return unit_cls
         return dec
 
     @classmethod
     def new(cls, name, **kwargs):
-        return cls.UNIT[name](**kwargs)
+        return cls.UNITS[name](**kwargs)
