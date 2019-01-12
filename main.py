@@ -44,8 +44,6 @@ def battle():
             print('Number of members', len(squad.members))
             for member in squad.members:
                 print(member)
-    else:
-        pass
 
 
 if __name__ == '__main__':

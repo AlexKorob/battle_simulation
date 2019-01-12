@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from models.units.vehicle import Vehicle
 
 
@@ -38,3 +39,12 @@ class TestVehicle(unittest.TestCase):
 
     def test_is_attack(self):
         self.assertGreater(self.vehicle.attack(), 0)
+
+    @patch("models.units.vehicle.randint")
+    def test_recharge_in_interval(self, mock_randint):
+        mock_randint.return_value = 1000
+        self.assertEqual(Vehicle(3).recharge, 1000)
+        mock_randint.return_value = 2000
+        self.assertEqual(Vehicle(3).recharge, 2000)
+
+        mock_randint.assert_called_with(1000, 2000)
