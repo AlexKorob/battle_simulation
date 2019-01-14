@@ -10,6 +10,7 @@ class Soldier(Unit):
         self._health = 1
         self._experience = 0
         self.saved_time = 0
+        self.name = "Soldier"
 
     @property
     def health(self):

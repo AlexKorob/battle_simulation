@@ -12,6 +12,7 @@ class Vehicle(Unit):
         self.count_operators = operators if 0 < operators <= 3 else 1
         self.operators = [Soldier() for i in range(self.count_operators)]
         self.saved_time = 0
+        self.name = "Vehicle"
 
     @property
     def health(self):

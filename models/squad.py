@@ -4,9 +4,10 @@ from .units.unit import Unit
 
 
 class Squad:
-    def __init__(self, units):
+    def __init__(self, units, name):
         self.members = []
         total_units = 0
+        self.name = name
         for unit, parameters in units.items():
             if "numbers" not in parameters:
                 raise AttributeError("Did not define a numbers in configuration file")
@@ -20,6 +21,7 @@ class Squad:
                 self.members.append(Unit.new(unit, **parameters))
 
             parameters['numbers'] = num_units
+        self.full_hp = self.health
 
     def attack(self):
         total_number = len(self.members)
@@ -63,3 +65,10 @@ class Squad:
         if self.members:
             return True
         return False
+
+    @property
+    def repr_health(self):
+        return "%.2f" %(self.health * 100 / self.full_hp)
+
+    def __str__(self):
+        return str(self.name)
