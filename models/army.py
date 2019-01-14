@@ -4,7 +4,7 @@ from .squad import Squad
 
 class Army:
     def __init__(self, name=None, squad=1, units=None):
-        self.squads = [Squad(units) for i in range(squad)]
+        self.squads = [Squad(units, i + 1) for i in range(squad)]
         self.name = name
 
     def choose_targets(self, list_with_armies):
@@ -66,10 +66,16 @@ class Army:
         '''Army choose random one own squad
             and one enemy squad from method 'choose_targets'''
         squad = choice(self.squads)
-        target = self.choose_target(all_armies)
-        if squad.attack() > target.attack():
-            damage = squad.damage()
-            target.get_damage(damage)
+        target_squad = self.choose_target(all_armies)
+        target_army = None
+        for army in all_armies:
+            if target_squad in army.squads: target_army = army
+        if squad.attack() > target_squad.attack():
+            return {"attack": True,
+                    "self_squad": squad,
+                    "enemy_squad": target_squad,
+                    "enemy_army": target_army}
+        return {"attack": False}
 
     def __str__(self):
-        return self.name
+        return str(self.name)
