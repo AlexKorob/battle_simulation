@@ -20,7 +20,7 @@ class TestSquad(unittest.TestCase):
         print()
 
     def setUp(self):
-        self.squad = Squad(self.units)
+        self.squad = Squad(self.units, "squad")
 
     def test_can_not_take_more_then_10_units(self):
         with self.assertRaises(AssertionError):
@@ -28,7 +28,7 @@ class TestSquad(unittest.TestCase):
                                   "numbers": 6},
                                 "Vehicle": {
                                   "operators": 3,
-                                  "numbers": 5}})
+                                  "numbers": 5}}, "squad")
 
     def test_is_attack(self):
         self.assertTrue(self.squad.attack())
