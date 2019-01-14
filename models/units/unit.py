@@ -1,0 +1,55 @@
+from abc import abstractmethod, abstractproperty, ABC
+
+
+class Unit(ABC):
+    UNITS = {}
+
+    @abstractproperty
+    def recharge(self):
+        """
+            Required time in milliseconds
+            for recharge
+        """
+        pass
+
+    @abstractproperty
+    def recharged(self):
+        """
+            Return True/False
+        """
+        pass
+
+    @abstractproperty
+    def health(self):
+        pass
+
+    @abstractproperty
+    def alive(self):
+        pass
+
+    @abstractmethod
+    def up_level(self):
+        pass
+
+    @abstractmethod
+    def attack(self):
+        pass
+
+    @abstractmethod
+    def damage(self):
+        pass
+
+    @abstractmethod
+    def get_damage(self):
+        pass
+
+    @classmethod
+    def register(cls, name):
+        def dec(unit_cls):
+            cls.UNITS[name] = unit_cls
+            return unit_cls
+        return dec
+
+    @classmethod
+    def new(cls, name, **kwargs):
+        return cls.UNITS[name](**kwargs)
