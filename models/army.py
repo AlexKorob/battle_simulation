@@ -69,7 +69,8 @@ class Army:
         target_squad = self.choose_target(all_armies)
         target_army = None
         for army in all_armies:
-            if target_squad in army.squads: target_army = army
+            if target_squad in army.squads:
+                target_army = army
         if squad.attack() > target_squad.attack():
             return {"attack": True,
                     "self_squad": squad,

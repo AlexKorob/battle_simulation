@@ -68,7 +68,7 @@ class Squad:
 
     @property
     def repr_health(self):
-        return "%.2f" %(self.health * 100 / self.full_hp)
+        return "%.2f" % (self.health * 100 / self.full_hp)
 
     def __str__(self):
         return str(self.name)
